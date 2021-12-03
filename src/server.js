@@ -3,10 +3,9 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 // connect my routes to this file
-// const apiRouter = require("../routes/apiRoutes");
+
 const apiRouter = require("../routes/apiRoutes");
 //const routes = require("../routes");
-//const htmlRouter = require("htmlRouter");
 
 // create new app instance using express
 const app = express();

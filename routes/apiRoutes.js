@@ -4,6 +4,7 @@ const fs = require("fs");
 
 // uuid for unique id
 const { v4: uuidv4 } = require("uuid");
+const { request } = require("http");
 //uuidv4();
 
 // API GET request
@@ -45,12 +46,26 @@ apiRouter.post("/notes", (req, res) => {
 
 // API DELETE Request
 apiRouter.delete("/notes/:id", (req, res) => {
-  // specify id to delete
+  // id to delete
+  let noteId = req.params.id.toString();
+  //console.log(`Delete: ${noteId}`);
+
   // read data from db.json
+  let data = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../db/db.json"), "utf8")
+  );
   // filter out notes (data) that will not be deleted
+
+  const newData = data.filter((note) => note.id.toString() !== noteId);
   // write new data to db.json
+  fs.writeFileSync(
+    path.join(__dirname, "../db/db.json"),
+    JSON.stringify(newData)
+  );
+
+  console.log("Successfully deleted note of id ${noteId}");
   // send response
-  console.log("Received a delete for id ", req.params.id);
+  res.json(newData);
 });
 
 module.exports = apiRouter;
