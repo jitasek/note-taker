@@ -2,9 +2,10 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-// routes
-const apiRouter = require("../routes/apiRoutes");
-const htmlRouter = require("../routes/htmlRoutes");
+// connect my routes to this file
+// const apiRouter = require("../routes/apiRoutes");
+// const htmlRouter = require("../routes/htmlRoutes");
+const routes = require("../routes");
 
 // create new app instance using express
 const app = express();
@@ -18,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // define my folder with static assets
 app.use(express.static(path.join(__dirname, "../public")));
+
+// connect routes
+app.use(routes);
 
 // connect my express app to the port
 app.listen(PORT, () => {
