@@ -5,7 +5,6 @@ const fs = require("fs");
 // uuid for unique id
 const { v4: uuidv4 } = require("uuid");
 const { request } = require("http");
-//uuidv4();
 
 // API GET request
 apiRouter.get("/notes", (req, res) => {
@@ -13,7 +12,6 @@ apiRouter.get("/notes", (req, res) => {
   let data = JSON.parse(
     fs.readFileSync(path.join(__dirname, "../db/db.json"), "utf8")
   );
-  //console.log(JSON.stringify(data));
 
   // Send response data of the GET request
   res.json(data);

@@ -5,7 +5,6 @@ const path = require("path");
 // connect my routes to this file
 
 const apiRouter = require("../routes/apiRoutes");
-//const routes = require("../routes");
 
 // create new app instance using express
 const app = express();
