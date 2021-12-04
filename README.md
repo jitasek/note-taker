@@ -14,7 +14,7 @@ An app used for writing and saving notes. The app uses Express.js for backend an
 The purpose of this app is to practise working with Express.js, npm, fs, path, uuid, routes, API requests and more.
 <br>
 <br>
-[Link to the deployed app](https://TBS)
+[Link to the deployed app](https://jitkas-note-taker.herokuapp.com/)
 <br>
 <br>
 
@@ -26,7 +26,7 @@ As a small business owner I want to be able to write and save notes so that I ca
 
 ## Usage
 
-App is live. Open this [link](https://TBS) and start using the app typing/saving/deleting your notes.
+App is live. Open this [link](https://jitkas-note-taker.herokuapp.com/) and start using the app typing/saving/deleting your notes.
 
 <br>
 
