@@ -9,7 +9,7 @@ const { request } = require("http");
 // API GET request
 apiRouter.get("/notes", (req, res) => {
   // Read db.json file
-  let data = JSON.parse(
+  const data = JSON.parse(
     fs.readFileSync(path.join(__dirname, "../db/db.json"), "utf8")
   );
 
@@ -29,14 +29,19 @@ apiRouter.post("/notes", (req, res) => {
   newNote.id = uuidv4();
 
   // read data from db.json
-  let data = JSON.parse(
+  const data = JSON.parse(
     fs.readFileSync(path.join(__dirname, "../db/db.json"), "utf8")
   );
-  // Push new note in db.json
-  data.push(newNote);
+  // Push new note in db.json:
+  // using .unshift() instaed of .push() here.
+  // Whilst the push method adds the new note to the end of the array,
+  // unshift will add it to the beginning - this will mean that the newest
+  // note will always display at the top of the list in the UI
+
+  data.unshift(newNote);
   // Write note data to db.json
   fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(data));
-  console.log("Successfully added new note to db.json!");
+  console.info("Successfully added new note to db.json!");
 
   // send res
   res.json(data);
@@ -49,7 +54,7 @@ apiRouter.delete("/notes/:id", (req, res) => {
   //console.log(`Delete: ${noteId}`);
 
   // read data from db.json
-  let data = JSON.parse(
+  const data = JSON.parse(
     fs.readFileSync(path.join(__dirname, "../db/db.json"), "utf8")
   );
   // filter out notes (data) that will not be deleted
@@ -61,7 +66,7 @@ apiRouter.delete("/notes/:id", (req, res) => {
     JSON.stringify(newData)
   );
 
-  console.log("Successfully deleted note of id ${noteId}");
+  console.info("Successfully deleted note of id ${noteId}");
   // send response
   res.json(newData);
 });
